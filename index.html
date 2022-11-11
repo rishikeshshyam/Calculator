@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+</head>
+
+
+<style>
+    body{
+        background-image: url('img.jpg');
+    }
+    .container{
+        max-width: 400px;
+        margin: 10vh auto 0 auto;
+        box-shadow: 0px 0px 5px 10px;
+        background-color: whitesmoke;
+    }
+    #display{
+        text-align: right;
+        height:70px;
+        line-height: 70px;
+        padding:14px 7px ;
+        font-size: 20px;
+        
+    }
+    .buttons{
+        display: grid;
+        border-bottom: 1px solid #ddd;
+        border-left: 1px solid #ddd;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+       
+    }
+    .buttons > div{
+        border-top: 1px solid #ddd;
+        border-right:1px solid #ddd;
+        
+    }
+    .button{
+        border:0.5px solid #ddd;
+        line-height: 100px;
+        text-align: center;
+        font-size: 25px;
+        cursor: pointer;
+    }
+    #equal{
+        background-color: orange;
+    }
+    .button:hover,#equla:hover{
+        background-color:lightcoral;
+    }
+    
+    
+</style>
+<body >
+    
+    <section>
+        <div class="container">
+            <div id="display"></div>
+            <div class="buttons">
+                <div class="button">C</div>
+                <div class="button">/</div>
+                <div class="button">*</div>
+                <div class="button">DEL</div>
+                <div class="button">7</div>
+                <div class="button">8</div>
+                <div class="button">9</div>
+                <div class="button">-</div>
+                <div class="button">4</div>
+                <div class="button">5</div>
+                <div class="button">6</div>
+                <div class="button">+</div>
+                <div class="button">1</div>
+                <div class="button">2</div>
+                <div class="button">3</div>
+                <div class="button">.</div>
+                <div class="button">(</div>
+                <div class="button">0</div>
+                <div class="button">)</div>
+                <div class="button" id="equal">=</div>
+            </div>
+        </div>
+    </section>
+    <script>
+        let display = document.getElementById('display');
+    
+    let buttons = Array.from(document.getElementsByClassName('button'));
+    
+    buttons.map( button => {
+        button.addEventListener('click', (e) => {
+            switch(e.target.innerText){
+                case 'C':
+                    display.innerText = '';
+                    break;
+                case '=':
+                    try{
+                        display.innerText = eval(display.innerText);
+                    } catch {
+                        display.innerText = "Error"
+                    }
+                    break;
+                case 'DEL':
+                    if (display.innerText){
+                       display.innerText = display.innerText.slice(0, -1);
+                    }
+                    break;
+                default:
+                    display.innerText += e.target.innerText;
+            }
+        });
+    });
+    </script>
+</body>
+</html>
